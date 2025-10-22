@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmetics Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        header {
+            background: #f8c8dc;
+            padding: 1rem;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        ul {
+            list-style: none;
+            display: flex;
+        }
+
+        li {
+            margin-left: 1rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .hero {
+            background: url('https://via.placeholder.com/1200x400?text=Beauty+Background') no-repeat center center/cover;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+        .products {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .filter {
+            margin-bottom: 2rem;
+        }
+
+        .filter-btn {
+            margin: 0 0.5rem;
+            padding: 0.5rem 1rem;
+            border: none;
+            background: #f8c8dc;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .filter-btn.active {
+            background: #ff69b4;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .product {
+            border: 1px solid #ddd;
+            padding: 1rem;
+            border-radius: 5px;
+        }
+
+        .product img {
+            width: 100%;
+            height: auto;
+        }
+
+        footer {
+            background: #f8c8dc;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+            }
+            ul {
+                margin-top: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Cosmetics Hub</div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <h1>Welcome to Cosmetics Hub</h1>
+        <p>Discover the best beauty products for your skin and style.</p>
+    </section>
+
+    <section id="products" class="products">
+        <h2>Our Products</h2>
+        <div class="filter">
+            <button class="filter-btn active" data-category="all">All</button>
+            <button class="filter-btn" data-category="skincare">Skincare</button>
+            <button class="filter-btn" data-category="makeup">Makeup</button>
+            <button class="filter-btn" data-category="haircare">Haircare</button>
+        </div>
+        <div class="product-grid">
+            <div class="product" data-category="skincare">
+                <img src="https://via.placeholder.com/200x200?text=Moisturizer" alt="Moisturizer">
+                <h3>Hydrating Moisturizer</h3>
+                <p>$25.00</p>
+            </div>
+            <div class="product" data-category="makeup">
+                <img src="https://via.placeholder.com/200x200?text=Lipstick" alt="Lipstick">
+                <h3>Red Lipstick</h3>
+                <p>$15.00</p>
+            </div>
+            <div class="product" data-category="haircare">
+                <img src="https://via.placeholder.com/200x200?text=Shampoo" alt="Shampoo">
+                <h3>Volumizing Shampoo</h3>
+                <p>$20.00</p>
+            </div>
+            <div class="product" data-category="skincare">
+                <img src="https://via.placeholder.com/200x200?text=Cleanser" alt="Cleanser">
+                <h3>Gentle Cleanser</h3>
+                <p>$18.00</p>
+            </div>
+            <div class="product" data-category="makeup">
+                <img src="https://via.placeholder.com/200x200?text=Foundation" alt="Foundation">
+                <h3>Matte Foundation</h3>
+                <p>$30.00</p>
+            </div>
+            <div class="product" data-category="haircare">
+                <img src="https://via.placeholder.com/200x200?text=Conditioner" alt="Conditioner">
+                <h3>Repairing Conditioner</h3>
+                <p>$22.00</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Cosmetics Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const products = document.querySelectorAll('.product');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    button.classList.add('active');
+
+                    const category = button.getAttribute('data-category');
+
+                    products.forEach(product => {
+                        if (category === 'all' || product.getAttribute('data-category') === category) {
+                            product.style.display = 'block';
+                        } else {
+                            product.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
